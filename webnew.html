@@ -48,6 +48,16 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); } 
         }
+
+        /* Animación de la flecha */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .arrow-down {
+            animation: bounce 2s infinite;
+        }
         </style>
 </head>
 <body class="bg-joker text-white font-sans">
@@ -58,11 +68,15 @@
             EXCLUSIVO PARA PERSONAS CON EXPERIENCIA. <br>
             Cajeros o administradores independientes que venden +10M mensuales.
         </p>
-        <div class="space-y-4">
+        <div class="space-y-6 flex flex-col items-center">
             <p class="text-lg font-semibold uppercase tracking-widest">Activamos tus cargas en menos de 2 minutos</p>
             <a href="https://wa.me/549111234567?text=Hola%20Joker,%20Distibuidora%20quiero%20solicitar%20precios" class="btn-primary px-8 py-4 rounded-full font-bold text-lg inline-block">
                 SOLICITAR PRECIOS
             </a>
+            
+            <div class="mt-4">
+                <i class="fas fa-chevron-down text-accent text-3xl arrow-down"></i>
+            </div>
         </div>
     </header>
 
