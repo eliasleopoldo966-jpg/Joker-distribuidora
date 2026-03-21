@@ -1,3 +1,7 @@
+// ===== Vercel Speed Insights =====
+import { injectSpeedInsights } from '@vercel/speed-insights';
+injectSpeedInsights();
+
 // ===== Scroll Animations =====
 document.addEventListener('DOMContentLoaded', () => {
     // Add fade-in class to animatable elements
