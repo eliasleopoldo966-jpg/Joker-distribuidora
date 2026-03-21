@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joker Distribuidor | Exclusivo para Expertos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        .bg-joker { background-color: #1a1a1a; }
+        .text-accent { color: #ffce00; } /* Color dorado/amarillo para resaltar */
+        .btn-primary { background-color: #ffce00; color: #000; transition: 0.3s; }
+        .btn-primary:hover { background-color: #e6b800; transform: scale(1.05); }
+    /* Estilos del Carrusel */
+        .carousel-section {
+            background-color: #111; /* Fondo oscuro */
+            padding: 2rem 0;
+            overflow: hidden;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+        .carousel-track-wrapper {
+            width: 100%;
+            overflow: hidden;
+        }
+        .carousel-track {
+            display: flex;
+            align-items: center;
+            gap: 4rem; /* Espacio entre logos */
+            width: max-content;
+            animation: scroll 30s linear infinite; /* Tiempo que tarda en dar la vuelta */
+        }
+        .carousel-logo {
+            color: #666; /* Color gris para que no compita con tu texto principal */
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        .carousel-logo:hover {
+            color: #ffce00; /* Se ilumina cuando le pasan el mouse por arriba */
+        }
+
+        /* Animación del movimiento continuo */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } 
+        }
+        </style>
+</head>
+<body class="bg-joker text-white font-sans">
+
+    <header class="min-h-screen flex flex-col items-center justify-center text-center px-4 bg-gradient-to-b from-black to-joker">
+        <h1 class="text-5xl md:text-7xl font-bold mb-4 text-accent">JOKER DISTRIBUIDOR</h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-2xl text-gray-300">
+            EXCLUSIVO PARA PERSONAS CON EXPERIENCIA. <br>
+            Cajeros o administradores independientes que venden +10M mensuales.
+        </p>
+        <div class="space-y-4">
+            <p class="text-lg font-semibold uppercase tracking-widest">Activamos tus cargas en menos de 2 minutos</p>
+            <a href="https://wa.me/549111234567?text=Hola%20Joker,%20Distibuidora%20quiero%20solicitar%20precios" class="btn-primary px-8 py-4 rounded-full font-bold text-lg inline-block">
+                SOLICITAR PRECIOS
+            </a>
+        </div>
+    </header>
+
+    <!-- LOGO CAROUSEL -->
+    <section class="carousel-section">
+        <div class="carousel-track-wrapper">
+            <div class="carousel-track">
+                <div class="carousel-logo"><span>Multipanel</span></div>
+                <div class="carousel-logo"><span>Multiskin</span></div>
+                <div class="carousel-logo"><span>Bet30</span></div>
+                <div class="carousel-logo"><span>Ganamos</span></div>
+                <div class="carousel-logo"><span>Gana en Casa</span></div>
+                <div class="carousel-logo"><span>Mika28</span></div>
+                <div class="carousel-logo"><span>Fortu bet</span></div>
+                <div class="carousel-logo"><span>Gran Poseidón</span></div>
+                <div class="carousel-logo"><span>Juga y gana</span></div>
+                <div class="carousel-logo"><span>Esmeralda 30</span></div>
+                <div class="carousel-logo"><span>Gran Casino Zeus</span></div>
+                <div class="carousel-logo"><span>Joker vip</span></div>
+                <div class="carousel-logo"><span>Juga Vip</span></div>
+                <div class="carousel-logo"><span>Juga y Gana</span></div>
+                <!-- Duplicate for seamless loop -->
+                <div class="carousel-logo"><span>Multiskin</span></div>
+                <div class="carousel-logo"><span>Multipanel</span></div>
+                <div class="carousel-logo"><span>Bet30</span></div>
+                <div class="carousel-logo"><span>Ganamos</span></div>
+                <div class="carousel-logo"><span>Gana en Casa</span></div>
+                <div class="carousel-logo"><span>Mika28</span></div>
+                <div class="carousel-logo"><span>Fortubet</span></div>
+                <div class="carousel-logo"><span>Gran Poseidón</span></div>
+                <div class="carousel-logo"><span>Juga y gana</span></div>
+                <div class="carousel-logo"><span>Esmeralda 30</span></div>
+                <div class="carousel-logo"><span>Gran Casino Zeus</span></div>
+                <div class="carousel-logo"><span>Joker vip</span></div>
+                <div class="carousel-logo"><span>Juga Vip</span></div>
+                <div class="carousel-logo"><span>Juga y Gana</span></div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 px-6 bg-white text-black">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-12 uppercase">¿Te suena familiar este escenario?</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-left">
+                <div class="p-6 border-l-4 border-red-500 bg-gray-50">
+                    <h3 class="font-bold mb-2 underline">Proveedores lentos</h3>
+                    <p>Perdés ventas porque la carga de fichas tarda una eternidad y tu cliente se va con otro.</p>
+                </div>
+                <div class="p-6 border-l-4 border-red-500 bg-gray-50">
+                    <h3 class="font-bold mb-2 underline">Ser un intermediario más</h3>
+                    <p>Tenés porcentajes pésimos porque tu proveedor actual no es directo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-joker">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 text-accent uppercase">¿Por qué elegir Joker Distribuidor?</h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="text-center p-6 border border-gray-800 rounded-lg">
+                    <i class="fas fa-bolt text-4xl text-accent mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4 text-white">Velocidad Garantizada</h3>
+                    <p class="text-gray-400">Procesamos tus cargas en tiempo récord. No pierdas más clientes por demoras ajenas.</p>
+                </div>
+                <div class="text-center p-6 border border-gray-800 rounded-lg">
+                    <i class="fas fa-handshake text-4xl text-accent mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4 text-white">Proveedor Directo</h3>
+                    <p class="text-gray-400">Acceso a todas las plataformas sin intermediarios. Más margen para vos.</p>
+                </div>
+                <div class="text-center p-6 border border-gray-800 rounded-lg">
+                    <i class="fas fa-headset text-4xl text-accent mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4 text-white">Soporte 24/7</h3>
+                    <p class="text-gray-400">Grupo de soporte dedicado para resolver cualquier duda en el minuto uno.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 text-center bg-accent text-black">
+        <h2 class="text-3xl font-bold mb-6 uppercase">¿Listo para duplicar tus ganancias?</h2>
+        <a href="https://wa.me/549111234567?text=Hola%20Joker,%20Distibuidora%20quiero%20solicitar%20precios" class="bg-black text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-800 transition">
+            CONTACTANOS AHORA MISMO
+        </a>
+    </section>
+
+    <footer class="py-6 text-center text-gray-500 text-sm">
+        &copy; 2026 Joker Distribuidor - Todos los derechos reservados.
+    </footer>
+
+</body>
+</html>
