@@ -150,20 +150,28 @@
         }
         
         .carousel-image {
-            height: 50px;
+            height: 40px;
             width: auto;
-            max-width: 180px;
+            max-width: 140px;
             object-fit: contain;
-            filter: grayscale(100%) brightness(0.6);
-            opacity: 0.5;
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-        
-        .carousel-image:hover {
-            filter: grayscale(0%) brightness(1.1);
+            filter: grayscale(0%) brightness(1);
             opacity: 1;
-            transform: scale(1.08);
+            transition: all 0.4s ease;
+        }
+
+        @media (min-width: 768px) {
+            .carousel-image {
+                height: 50px;
+                max-width: 180px;
+                filter: grayscale(100%) brightness(0.6);
+                opacity: 0.5;
+                cursor: pointer;
+            }
+            .carousel-image:hover {
+                filter: grayscale(0%) brightness(1.1);
+                opacity: 1;
+                transform: scale(1.08);
+            }
         }
         
         /* Utils */
@@ -177,23 +185,23 @@
 <body class="font-sans antialiased text-gray-200 selection:bg-accent selection:text-black">
 
     <!-- Hero Section -->
-    <header class="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden">
+    <header class="relative min-h-[85vh] md:min-h-[90vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden">
         <!-- Background Orbs -->
         <div class="absolute top-10 -left-10 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
         <div class="absolute top-0 -right-4 w-72 h-72 bg-yellow-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
         <div class="absolute -bottom-8 left-20 w-72 h-72 bg-orange-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-10 animate-blob animation-delay-4000"></div>
 
         <div class="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
-            <div class="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-accent text-xs font-semibold tracking-widest uppercase animate-fade-in-up">
+            <div class="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-accent text-xs font-semibold tracking-widest uppercase animate-fade-in-up mt-8 md:mt-0">
                 <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
                 Exclusivo para Expertos
             </div>
             
-            <h1 class="text-6xl md:text-8xl lg:text-9xl font-heading font-black mb-6 tracking-tighter animate-fade-in-up delay-100 drop-shadow-2xl">
-                JOKER <span class="text-gradient">DISTRIBUIDOR</span>
+            <h1 class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-heading font-black mb-6 tracking-tighter animate-fade-in-up delay-100 drop-shadow-2xl">
+                JOKER <br class="sm:hidden"/><span class="text-gradient">DISTRIBUIDOR</span>
             </h1>
             
-            <p class="text-xl md:text-2xl mb-12 max-w-2xl text-gray-400 font-light leading-relaxed animate-fade-in-up delay-200">
+            <p class="text-xl md:text-2xl mb-8 md:mb-12 max-w-2xl text-gray-400 font-light leading-relaxed animate-fade-in-up delay-200">
                 Cajeros o administradores independientes que venden <strong class="text-white font-medium">+10M mensuales.</strong>
             </p>
             
@@ -243,38 +251,38 @@
     </section>
 
     <!-- Problem Section -->
-    <section class="py-24 px-6 relative z-10">
+    <section class="py-16 md:py-24 px-6 relative z-10">
         <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-heading font-bold mb-6">¿Te suena familiar <br class="md:hidden"/><span class="text-gradient">este escenario?</span></h2>
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-6">¿Te suena familiar <br class="md:hidden"/><span class="text-gradient">este escenario?</span></h2>
                 <div class="h-1.5 w-24 bg-gradient-to-r from-accent to-transparent mx-auto rounded-full"></div>
             </div>
             
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Card 1 -->
-                <div class="glass-card rounded-2xl p-8 relative overflow-hidden group">
+                <div class="glass-card rounded-2xl p-6 md:p-8 relative overflow-hidden group">
                     <div class="absolute top-0 left-0 w-1.5 h-full bg-red-500/80 rounded-l-2xl group-hover:bg-accent transition-colors duration-300"></div>
-                    <div class="flex items-center gap-5 mb-5">
-                        <div class="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 group-hover:text-accent group-hover:bg-accent/10 transition-colors duration-300">
-                            <i class="fas fa-hourglass-half text-2xl"></i>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 mb-4 sm:mb-5">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 group-hover:text-accent group-hover:bg-accent/10 transition-colors duration-300">
+                            <i class="fas fa-hourglass-half text-xl sm:text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-heading font-bold text-white">Proveedores lentos</h3>
+                        <h3 class="text-xl sm:text-2xl font-heading font-bold text-white">Proveedores lentos</h3>
                     </div>
-                    <p class="text-gray-400 leading-relaxed pl-[76px] font-light">
+                    <p class="text-gray-400 leading-relaxed sm:pl-[76px] font-light">
                         Perdés ventas irreparables porque la carga de fichas tarda una eternidad y tu cliente se va rápidamente con la competencia.
                     </p>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="glass-card rounded-2xl p-8 relative overflow-hidden group">
+                <div class="glass-card rounded-2xl p-6 md:p-8 relative overflow-hidden group">
                     <div class="absolute top-0 left-0 w-1.5 h-full bg-red-500/80 rounded-l-2xl group-hover:bg-accent transition-colors duration-300"></div>
-                    <div class="flex items-center gap-5 mb-5">
-                        <div class="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 group-hover:text-accent group-hover:bg-accent/10 transition-colors duration-300">
-                            <i class="fas fa-users-slash text-2xl"></i>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 mb-4 sm:mb-5">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 group-hover:text-accent group-hover:bg-accent/10 transition-colors duration-300">
+                            <i class="fas fa-users-slash text-xl sm:text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-heading font-bold text-white">Ser un intermediario</h3>
+                        <h3 class="text-xl sm:text-2xl font-heading font-bold text-white">Ser un intermediario</h3>
                     </div>
-                    <p class="text-gray-400 leading-relaxed pl-[76px] font-light">
+                    <p class="text-gray-400 leading-relaxed sm:pl-[76px] font-light">
                         Tenés porcentajes de ganancia pésimos porque tu proveedor actual no es directo, limitando tu capacidad de crecimiento económico.
                     </p>
                 </div>
@@ -283,57 +291,57 @@
     </section>
 
     <!-- Why Us Section -->
-    <section class="py-24 px-6 bg-gradient-to-b from-[#050505] to-[#0a0a0a] relative z-10 border-t border-white/5">
+    <section class="py-16 md:py-24 px-6 bg-gradient-to-b from-[#050505] to-[#0a0a0a] relative z-10 border-t border-white/5">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-20 animate-fade-in-up">
-                <h2 class="text-4xl md:text-5xl font-heading font-bold mb-4">¿Por qué elegir a <span class="text-gradient">Joker?</span></h2>
-                <p class="text-xl text-gray-500 font-light">Beneficios de élite diseñados a tu medida</p>
+            <div class="text-center mb-16 md:mb-20 animate-fade-in-up">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-4">¿Por qué elegir a <span class="text-gradient">Joker?</span></h2>
+                <p class="text-lg md:text-xl text-gray-500 font-light">Beneficios de élite diseñados a tu medida</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8 md:gap-12">
                 <!-- Benefit 1 -->
-                <div class="glass-card p-10 rounded-3xl text-center group">
-                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-[#151515] to-[#050505] border border-white/10 rounded-2xl flex items-center justify-center mb-8 transform group-hover:-translate-y-2 transition-transform duration-300 shadow-xl">
-                        <i class="fas fa-bolt text-3xl text-gradient"></i>
+                <div class="glass-card p-8 md:p-10 rounded-3xl text-center group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 mx-auto bg-gradient-to-br from-[#151515] to-[#050505] border border-white/10 rounded-2xl flex items-center justify-center mb-6 md:mb-8 transform group-hover:-translate-y-2 transition-transform duration-300 shadow-xl">
+                        <i class="fas fa-bolt text-2xl md:text-3xl text-gradient"></i>
                     </div>
-                    <h3 class="text-2xl font-heading font-bold mb-4 text-white">Velocidad Insuperable</h3>
-                    <p class="text-gray-400 font-light leading-relaxed">Procesamos tus cargas en tiempo récord. Asegurá a tus clientes al instante sin demoras ajenas.</p>
+                    <h3 class="text-xl md:text-2xl font-heading font-bold mb-3 md:mb-4 text-white">Velocidad Insuperable</h3>
+                    <p class="text-gray-400 font-light leading-relaxed text-sm md:text-base">Procesamos tus cargas en tiempo récord. Asegurá a tus clientes al instante sin demoras ajenas.</p>
                 </div>
 
                 <!-- Benefit 2 -->
-                <div class="glass-card p-10 rounded-3xl text-center group relative transform md:-translate-y-12">
+                <div class="glass-card p-8 md:p-10 rounded-3xl text-center group relative transform md:-translate-y-12">
                     <div class="absolute inset-0 bg-accent/5 rounded-3xl blur-xl -z-10 group-hover:bg-accent/10 transition-colors"></div>
-                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/20 rounded-2xl flex items-center justify-center mb-8 transform group-hover:-translate-y-2 transition-transform duration-300 shadow-2xl">
-                        <i class="fas fa-handshake text-3xl text-gradient"></i>
+                    <div class="w-16 h-16 md:w-20 md:h-20 mx-auto bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/20 rounded-2xl flex items-center justify-center mb-6 md:mb-8 transform group-hover:-translate-y-2 transition-transform duration-300 shadow-2xl">
+                        <i class="fas fa-handshake text-2xl md:text-3xl text-gradient"></i>
                     </div>
-                    <h3 class="text-2xl font-heading font-bold mb-4 text-white">Proveedor Directo</h3>
-                    <p class="text-gray-400 font-light leading-relaxed">Acceso a todas las plataformas sin intermediarios estorbo. Máximos márgenes de rentabilidad.</p>
+                    <h3 class="text-xl md:text-2xl font-heading font-bold mb-3 md:mb-4 text-white">Proveedor Directo</h3>
+                    <p class="text-gray-400 font-light leading-relaxed text-sm md:text-base">Acceso a todas las plataformas sin intermediarios estorbo. Máximos márgenes de rentabilidad.</p>
                 </div>
 
                 <!-- Benefit 3 -->
-                <div class="glass-card p-10 rounded-3xl text-center group">
-                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-[#151515] to-[#050505] border border-white/10 rounded-2xl flex items-center justify-center mb-8 transform group-hover:-translate-y-2 transition-transform duration-300 shadow-xl">
-                        <i class="fas fa-headset text-3xl text-gradient"></i>
+                <div class="glass-card p-8 md:p-10 rounded-3xl text-center group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 mx-auto bg-gradient-to-br from-[#151515] to-[#050505] border border-white/10 rounded-2xl flex items-center justify-center mb-6 md:mb-8 transform group-hover:-translate-y-2 transition-transform duration-300 shadow-xl">
+                        <i class="fas fa-headset text-2xl md:text-3xl text-gradient"></i>
                     </div>
-                    <h3 class="text-2xl font-heading font-bold mb-4 text-white">Soporte VIP 24/7</h3>
-                    <p class="text-gray-400 font-light leading-relaxed">Contamos con un equipo de soporte dedicado para resolver cualquier inquietud en todo momento.</p>
+                    <h3 class="text-xl md:text-2xl font-heading font-bold mb-3 md:mb-4 text-white">Soporte VIP 24/7</h3>
+                    <p class="text-gray-400 font-light leading-relaxed text-sm md:text-base">Contamos con un equipo de soporte dedicado para resolver cualquier inquietud en todo momento.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-24 px-6 relative z-10 overflow-hidden">
+    <section class="py-16 md:py-24 px-6 relative z-10 overflow-hidden">
         <!-- Blur Background effect -->
         <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
             <div class="w-[800px] h-[400px] bg-accent/10 rounded-[100%] blur-[120px]"></div>
         </div>
         
-        <div class="max-w-4xl mx-auto text-center relative z-20 glass-card p-12 md:p-16 rounded-[2.5rem] border border-accent/20 shadow-2xl">
-            <h2 class="text-4xl md:text-6xl font-heading font-bold mb-6 tracking-tight">¿Listo para duplicar <br/><span class="text-gradient">tus ganancias?</span></h2>
-            <p class="text-xl md:text-2xl text-gray-300 mb-10 font-light">Dejá de perder tiempo con intermediarios. Empezá a operar como un verdadero experto.</p>
+        <div class="max-w-4xl mx-auto text-center relative z-20 glass-card p-8 md:p-16 rounded-[2.5rem] border border-accent/20 shadow-2xl">
+            <h2 class="text-3xl sm:text-4xl md:text-6xl font-heading font-bold mb-4 md:mb-6 tracking-tight">¿Listo para duplicar <br/><span class="text-gradient">tus ganancias?</span></h2>
+            <p class="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 font-light">Dejá de perder tiempo con intermediarios. Empezá a operar como un verdadero experto.</p>
             <a href="https://wa.me/549111234567?text=Hola%20Joker,%20Distibuidora%20quiero%20solicitar%20precios" 
-               class="btn-glow inline-flex items-center gap-3 px-12 py-5 rounded-full font-bold text-lg md:text-xl tracking-wide uppercase">
+               class="btn-glow inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 md:px-12 py-4 md:py-5 rounded-full font-bold text-base sm:text-lg md:text-xl tracking-wide uppercase">
                 Contactanos Ahora <i class="fas fa-arrow-right"></i>
             </a>
         </div>
