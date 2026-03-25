@@ -4,167 +4,363 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joker Distribuidor | Exclusivo para Expertos</title>
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        accent: '#F5A623',
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'scroll': 'scroll 30s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-        .bg-joker { background-color: #1a1a1a; }
-        .text-accent { color: #ffce00; } /* Color dorado/amarillo para resaltar */
-        .btn-primary { background-color: #ffce00; color: #000; transition: 0.3s; }
-        .btn-primary:hover { background-color: #e6b800; transform: scale(1.05); }
-    /* Estilos del Carrusel */
-        .carousel-section {
-            background-color: #111; /* Fondo oscuro */
-            padding: 2rem 0;
-            overflow: hidden;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
         }
+
+        /* Scrollbar styles */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        
+        /* Glassmorphism setup */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(245, 166, 35, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(245, 166, 35, 0.15);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #F5A623, #FFD57A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Animated Glowing Button */
+        .btn-glow {
+            position: relative;
+            background: linear-gradient(45deg, #F5A623, #F7B750);
+            color: #000;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: inherit;
+            background: linear-gradient(45deg, #F5A623, #F7B750);
+            filter: blur(15px);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-glow:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(245, 166, 35, 0.5);
+        }
+        
+        .btn-glow:hover::before {
+            opacity: 0.7;
+        }
+
+        /* Carousel Styles */
         .carousel-track-wrapper {
             width: 100%;
             overflow: hidden;
+            position: relative;
         }
+        
+        /* Gradient masks for carousel edges */
+        .carousel-track-wrapper::before,
+        .carousel-track-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 15vw;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .carousel-track-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, #050505, transparent);
+        }
+        .carousel-track-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, #050505, transparent);
+        }
+
         .carousel-track {
             display: flex;
             align-items: center;
-            gap: 4rem; /* Espacio entre logos */
+            gap: 4rem;
             width: max-content;
-            animation: scroll 30s linear infinite; /* Tiempo que tarda en dar la vuelta */
         }
-        .carousel-logo {
-            color: #666; /* Color gris para que no compita con tu texto principal */
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
+        
+        .carousel-image {
+            height: 50px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
+            filter: grayscale(100%) brightness(0.6);
+            opacity: 0.5;
+            transition: all 0.4s ease;
+            cursor: pointer;
         }
-        .carousel-logo:hover {
-            color: #ffce00; /* Se ilumina cuando le pasan el mouse por arriba */
+        
+        .carousel-image:hover {
+            filter: grayscale(0%) brightness(1.1);
+            opacity: 1;
+            transform: scale(1.08);
         }
-
-        /* Animación del movimiento continuo */
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } 
-        }
-
-        /* Animación de la flecha */
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        .arrow-down {
-            animation: bounce 2s infinite;
-        }
-        </style>
+        
+        /* Utils */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+    </style>
 </head>
-<body class="bg-joker text-white font-sans">
+<body class="font-sans antialiased text-gray-200 selection:bg-accent selection:text-black">
 
-    <header class="min-h-screen flex flex-col items-center justify-center text-center px-4 bg-gradient-to-b from-black to-joker">
-        <h1 class="text-5xl md:text-7xl font-bold mb-4 text-accent">JOKER DISTRIBUIDOR</h1>
-        <p class="text-xl md:text-2xl mb-8 max-w-2xl text-gray-300">
-            EXCLUSIVO PARA PERSONAS CON EXPERIENCIA. <br>
-            Cajeros o administradores independientes que venden +10M mensuales.
-        </p>
-        <div class="space-y-6 flex flex-col items-center">
-            <p class="text-lg font-semibold uppercase tracking-widest">Activamos tus cargas en menos de 2 minutos</p>
-            <a href="https://wa.me/549111234567?text=Hola%20Joker,%20Distibuidora%20quiero%20solicitar%20precios" class="btn-primary px-8 py-4 rounded-full font-bold text-lg inline-block">
-                SOLICITAR PRECIOS
-            </a>
-            
-            <div class="mt-4">
-                <i class="fas fa-chevron-down text-accent text-3xl arrow-down"></i>
+    <!-- Hero Section -->
+    <header class="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden">
+        <!-- Background Orbs -->
+        <div class="absolute top-10 -left-10 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
+        <div class="absolute top-0 -right-4 w-72 h-72 bg-yellow-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-orange-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-10 animate-blob animation-delay-4000"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
+            <div class="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-accent text-xs font-semibold tracking-widest uppercase animate-fade-in-up">
+                <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                Exclusivo para Expertos
             </div>
+            
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-heading font-black mb-6 tracking-tighter animate-fade-in-up delay-100 drop-shadow-2xl">
+                JOKER <span class="text-gradient">DISTRIBUIDOR</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl mb-12 max-w-2xl text-gray-400 font-light leading-relaxed animate-fade-in-up delay-200">
+                Cajeros o administradores independientes que venden <strong class="text-white font-medium">+10M mensuales.</strong>
+            </p>
+            
+            <div class="flex flex-col items-center space-y-6 animate-fade-in-up delay-300">
+                <a href="https://wa.me/549111234567?text=Hola%20Joker,%20Distibuidora%20quiero%20solicitar%20precios" 
+                   class="btn-glow px-12 py-5 rounded-full font-bold text-lg md:text-xl tracking-wider uppercase">
+                    Solicitar Precios
+                </a>
+                <p class="text-xs md:text-sm font-medium text-gray-500 uppercase tracking-widest flex items-center gap-2 mt-4">
+                    <i class="fas fa-bolt text-accent"></i> Activamos tus cargas en menos de 2 minutos
+                </p>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow text-gray-600 cursor-pointer hidden md:block">
+            <i class="fas fa-chevron-down text-3xl hover:text-accent transition-colors"></i>
         </div>
     </header>
 
-    <!-- LOGO CAROUSEL -->
-    <section class="carousel-section">
+    <!-- Logo Carousel -->
+    <section class="py-12 bg-black/40 border-y border-white/5 relative z-10">
         <div class="carousel-track-wrapper">
-            <div class="carousel-track">
-                <div class="carousel-logo"><span>Multipanel</span></div>
-                <div class="carousel-logo"><span>Multiskin</span></div>
-                <div class="carousel-logo"><span>Bet30</span></div>
-                <div class="carousel-logo"><span>Ganamos</span></div>
-                <div class="carousel-logo"><span>Gana en Casa</span></div>
-                <div class="carousel-logo"><span>Mika28</span></div>
-                <div class="carousel-logo"><span>Fortu bet</span></div>
-                <div class="carousel-logo"><span>Gran Poseidón</span></div>
-                <div class="carousel-logo"><span>Juga y gana</span></div>
-                <div class="carousel-logo"><span>Esmeralda 30</span></div>
-                <div class="carousel-logo"><span>Gran Casino Zeus</span></div>
-                <div class="carousel-logo"><span>Joker vip</span></div>
-                <div class="carousel-logo"><span>Juga Vip</span></div>
-                <div class="carousel-logo"><span>Juga y Gana</span></div>
+            <div class="carousel-track animate-scroll">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/68ead3ac8d8d145ab8eeec12.png" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/68ead8fb2c80b572120b710d.png" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/68eadb07054e064ec94e0f1d.png" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/68eada9a054e06457b4d89ee.png" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/68eada568d8d14086bf45be7.png" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/68eadbae2c80b504670e81a3.png" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/bcca3464-3081-40af-b301-b6822447d88f.gif" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/a93fa676-6f60-4be9-9de1-064bcff2b658.gif" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/40bbe9f8-6fc2-45f2-ac7a-c51ab6d88822.gif" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/b87a28a6-3c81-4516-a2b0-bfef822ae86d.gif" class="carousel-image" alt="Logo">
                 <!-- Duplicate for seamless loop -->
-                <div class="carousel-logo"><span>Multiskin</span></div>
-                <div class="carousel-logo"><span>Multipanel</span></div>
-                <div class="carousel-logo"><span>Bet30</span></div>
-                <div class="carousel-logo"><span>Ganamos</span></div>
-                <div class="carousel-logo"><span>Gana en Casa</span></div>
-                <div class="carousel-logo"><span>Mika28</span></div>
-                <div class="carousel-logo"><span>Fortubet</span></div>
-                <div class="carousel-logo"><span>Gran Poseidón</span></div>
-                <div class="carousel-logo"><span>Juga y gana</span></div>
-                <div class="carousel-logo"><span>Esmeralda 30</span></div>
-                <div class="carousel-logo"><span>Gran Casino Zeus</span></div>
-                <div class="carousel-logo"><span>Joker vip</span></div>
-                <div class="carousel-logo"><span>Juga Vip</span></div>
-                <div class="carousel-logo"><span>Juga y Gana</span></div>
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/68ead3ac8d8d145ab8eeec12.png" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/68ead8fb2c80b572120b710d.png" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/68eadb07054e064ec94e0f1d.png" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/68eada9a054e06457b4d89ee.png" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/68eada568d8d14086bf45be7.png" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/68eadbae2c80b504670e81a3.png" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/bcca3464-3081-40af-b301-b6822447d88f.gif" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/a93fa676-6f60-4be9-9de1-064bcff2b658.gif" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/40bbe9f8-6fc2-45f2-ac7a-c51ab6d88822.gif" class="carousel-image" alt="Logo">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/4MrcqSZh2QnvxE1iW7kV/media/b87a28a6-3c81-4516-a2b0-bfef822ae86d.gif" class="carousel-image" alt="Logo">
             </div>
         </div>
     </section>
-    <section class="py-20 px-6 bg-white text-black">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-12 uppercase">¿Te suena familiar este escenario?</h2>
-            <div class="grid md:grid-cols-2 gap-8 text-left">
-                <div class="p-6 border-l-4 border-red-500 bg-gray-50">
-                    <h3 class="font-bold mb-2 underline">Proveedores lentos</h3>
-                    <p>Perdés ventas porque la carga de fichas tarda una eternidad y tu cliente se va con otro.</p>
+
+    <!-- Problem Section -->
+    <section class="py-24 px-6 relative z-10">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-bold mb-6">¿Te suena familiar <br class="md:hidden"/><span class="text-gradient">este escenario?</span></h2>
+                <div class="h-1.5 w-24 bg-gradient-to-r from-accent to-transparent mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-red-500/80 rounded-l-2xl group-hover:bg-accent transition-colors duration-300"></div>
+                    <div class="flex items-center gap-5 mb-5">
+                        <div class="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 group-hover:text-accent group-hover:bg-accent/10 transition-colors duration-300">
+                            <i class="fas fa-hourglass-half text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold text-white">Proveedores lentos</h3>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed pl-[76px] font-light">
+                        Perdés ventas irreparables porque la carga de fichas tarda una eternidad y tu cliente se va rápidamente con la competencia.
+                    </p>
                 </div>
-                <div class="p-6 border-l-4 border-red-500 bg-gray-50">
-                    <h3 class="font-bold mb-2 underline">Ser un intermediario más</h3>
-                    <p>Tenés porcentajes pésimos porque tu proveedor actual no es directo.</p>
+
+                <!-- Card 2 -->
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-red-500/80 rounded-l-2xl group-hover:bg-accent transition-colors duration-300"></div>
+                    <div class="flex items-center gap-5 mb-5">
+                        <div class="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 group-hover:text-accent group-hover:bg-accent/10 transition-colors duration-300">
+                            <i class="fas fa-users-slash text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold text-white">Ser un intermediario</h3>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed pl-[76px] font-light">
+                        Tenés porcentajes de ganancia pésimos porque tu proveedor actual no es directo, limitando tu capacidad de crecimiento económico.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 px-6 bg-joker">
+    <!-- Why Us Section -->
+    <section class="py-24 px-6 bg-gradient-to-b from-[#050505] to-[#0a0a0a] relative z-10 border-t border-white/5">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-16 text-accent uppercase">¿Por qué elegir Joker Distribuidor?</h2>
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="text-center p-6 border border-gray-800 rounded-lg">
-                    <i class="fas fa-bolt text-4xl text-accent mb-4"></i>
-                    <h3 class="text-xl font-bold mb-4 text-white">Velocidad Garantizada</h3>
-                    <p class="text-gray-400">Procesamos tus cargas en tiempo récord. No pierdas más clientes por demoras ajenas.</p>
+            <div class="text-center mb-20 animate-fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-heading font-bold mb-4">¿Por qué elegir a <span class="text-gradient">Joker?</span></h2>
+                <p class="text-xl text-gray-500 font-light">Beneficios de élite diseñados a tu medida</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+                <!-- Benefit 1 -->
+                <div class="glass-card p-10 rounded-3xl text-center group">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-[#151515] to-[#050505] border border-white/10 rounded-2xl flex items-center justify-center mb-8 transform group-hover:-translate-y-2 transition-transform duration-300 shadow-xl">
+                        <i class="fas fa-bolt text-3xl text-gradient"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 text-white">Velocidad Insuperable</h3>
+                    <p class="text-gray-400 font-light leading-relaxed">Procesamos tus cargas en tiempo récord. Asegurá a tus clientes al instante sin demoras ajenas.</p>
                 </div>
-                <div class="text-center p-6 border border-gray-800 rounded-lg">
-                    <i class="fas fa-handshake text-4xl text-accent mb-4"></i>
-                    <h3 class="text-xl font-bold mb-4 text-white">Proveedor Directo</h3>
-                    <p class="text-gray-400">Acceso a todas las plataformas sin intermediarios. Más margen para vos.</p>
+
+                <!-- Benefit 2 -->
+                <div class="glass-card p-10 rounded-3xl text-center group relative transform md:-translate-y-12">
+                    <div class="absolute inset-0 bg-accent/5 rounded-3xl blur-xl -z-10 group-hover:bg-accent/10 transition-colors"></div>
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/20 rounded-2xl flex items-center justify-center mb-8 transform group-hover:-translate-y-2 transition-transform duration-300 shadow-2xl">
+                        <i class="fas fa-handshake text-3xl text-gradient"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 text-white">Proveedor Directo</h3>
+                    <p class="text-gray-400 font-light leading-relaxed">Acceso a todas las plataformas sin intermediarios estorbo. Máximos márgenes de rentabilidad.</p>
                 </div>
-                <div class="text-center p-6 border border-gray-800 rounded-lg">
-                    <i class="fas fa-headset text-4xl text-accent mb-4"></i>
-                    <h3 class="text-xl font-bold mb-4 text-white">Soporte 24/7</h3>
-                    <p class="text-gray-400">Grupo de soporte dedicado para resolver cualquier duda en el minuto uno.</p>
+
+                <!-- Benefit 3 -->
+                <div class="glass-card p-10 rounded-3xl text-center group">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-[#151515] to-[#050505] border border-white/10 rounded-2xl flex items-center justify-center mb-8 transform group-hover:-translate-y-2 transition-transform duration-300 shadow-xl">
+                        <i class="fas fa-headset text-3xl text-gradient"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 text-white">Soporte VIP 24/7</h3>
+                    <p class="text-gray-400 font-light leading-relaxed">Contamos con un equipo de soporte dedicado para resolver cualquier inquietud en todo momento.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 text-center bg-accent text-black">
-        <h2 class="text-3xl font-bold mb-6 uppercase">¿Listo para duplicar tus ganancias?</h2>
-        <a href="https://wa.me/549111234567?text=Hola%20Joker,%20Distibuidora%20quiero%20solicitar%20precios" class="bg-black text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-800 transition">
-            CONTACTANOS AHORA MISMO
-        </a>
+    <!-- CTA Section -->
+    <section class="py-24 px-6 relative z-10 overflow-hidden">
+        <!-- Blur Background effect -->
+        <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
+            <div class="w-[800px] h-[400px] bg-accent/10 rounded-[100%] blur-[120px]"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-20 glass-card p-12 md:p-16 rounded-[2.5rem] border border-accent/20 shadow-2xl">
+            <h2 class="text-4xl md:text-6xl font-heading font-bold mb-6 tracking-tight">¿Listo para duplicar <br/><span class="text-gradient">tus ganancias?</span></h2>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 font-light">Dejá de perder tiempo con intermediarios. Empezá a operar como un verdadero experto.</p>
+            <a href="https://wa.me/549111234567?text=Hola%20Joker,%20Distibuidora%20quiero%20solicitar%20precios" 
+               class="btn-glow inline-flex items-center gap-3 px-12 py-5 rounded-full font-bold text-lg md:text-xl tracking-wide uppercase">
+                Contactanos Ahora <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
     </section>
 
-    <footer class="py-6 text-center text-gray-500 text-sm">
-        &copy; 2026 Joker Distribuidor - Todos los derechos reservados.
+    <footer class="py-8 text-center border-t border-white/5 bg-[#030303]">
+        <p class="text-gray-600 text-sm font-light tracking-wide">
+            &copy; 2026 Joker Distribuidor - Todos los derechos reservados.
+        </p>
     </footer>
 
+<!-- Meta Pixel Code
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1256507563246155');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1256507563246155&ev=PageView&noscript=1"
+/></noscript>
+End Meta Pixel Code -->
 </body>
 </html>
